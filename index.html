@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Te Amo Jaqueline</title>
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        background: #000;
+        font-family: 'Arial', sans-serif;
+        text-align: center;
+    }
+
+    /* Luna grande */
+    .luna {
+        position: absolute;
+        top: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        background: radial-gradient(circle, #fff 40%, #ddd 60%, #bbb 100%);
+        box-shadow: 0 0 50px #ffffff55, 0 0 100px #ffffff55;
+        opacity: 0.25;
+        z-index: 1;
+    }
+
+    h1 {
+        position: relative;
+        z-index: 3;
+        margin-top: 170px;
+        font-size: 55px;
+        color: #ffe6ff;
+        text-shadow: 0 0 25px #ff66cc, 0 0 40px #ff99dd;
+        animation: brillar 2s infinite alternate;
+    }
+
+    @keyframes brillar {
+        from { opacity: 0.7; }
+        to   { opacity: 1; }
+    }
+
+    /* Estrellas fijas */
+    .estrella {
+        position: absolute;
+        color: white;
+        font-size: 12px;
+        opacity: 0.8;
+        animation: parpadeo 2s infinite alternate;
+    }
+
+    @keyframes parpadeo {
+        0% { opacity: 0.2; }
+        100% { opacity: 1; }
+    }
+
+    /* Emojis cayendo */
+    .emoji {
+        position: absolute;
+        font-size: 40px;
+        animation: caer 8s linear infinite;
+        opacity: 0.9;
+        filter: drop-shadow(0 0 8px #ffffff);
+    }
+
+    @keyframes caer {
+        0% { transform: translateY(-120px) rotate(0deg); }
+        100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    /* Fotos flotando */
+    .foto {
+        position: absolute;
+        width: 170px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px #ffffffcc;
+        animation: flotar 12s ease-in-out infinite;
+        z-index: 5;
+    }
+
+    @keyframes flotar {
+        0% { transform: translateY(0px) translateX(0px); }
+        50% { transform: translateY(-40px) translateX(20px); }
+        100% { transform: translateY(0px) translateX(0px); }
+    }
+
+    /* Rosas cayendo */
+    .rosa {
+        position: absolute;
+        font-size: 40px;
+        animation: caer 9s linear infinite;
+        opacity: 0.9;
+    }
+
+    /* Fuegos artificiales */
+    .firework {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: white;
+        animation: explotar 1.2s ease-out forwards;
+    }
+
+    @keyframes explotar {
+        0% { transform: scale(0.2); opacity: 1; }
+        100% { transform: scale(12); opacity: 0; }
+    }
+
+    /* Estrella fugaz */
+    .fugaz {
+        position: absolute;
+        top: 20%;
+        left: -200px;
+        width: 150px;
+        height: 4px;
+        background: linear-gradient(90deg, white, transparent);
+        animation: fugaz 3s ease-out infinite;
+        opacity: 0.9;
+        transform: rotate(-20deg);
+    }
+
+    @keyframes fugaz {
+        0% { left: -200px; opacity: 0; }
+        10% { opacity: 1; }
+        100% { left: 120%; opacity: 0; }
+    }
+
+    /* Nubes */
+    .nube {
+        position: absolute;
+        top: 20%;
+        width: 200px;
+        height: 80px;
+        background: #ffccf4;
+        opacity: 0.18;
+        filter: blur(12px);
+        border-radius: 100px;
+        animation: moverNube 20s linear infinite;
+    }
+
+    @keyframes moverNube {
+        0% { left: -300px; }
+        100% { left: 120%; }
+    }
+</style>
+</head>
+<body>
+
+<div class="luna"></div>
+
+<h1>✨🌙 Te Amo Jaqueline 🌙✨</h1>
+
+<!-- Música -->
+<audio autoplay loop muted>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Fotos flotando -->
+<img src="foto1.jpeg" class="foto" style="top: 65%; left: 10%; animation-delay: 0s;">
+<img src="foto2.jpeg" class="foto" style="top: 30%; left: 75%; animation-delay: 2s;">
+
+<!-- Estrella fugaz -->
+<div class="fugaz"></div>
+
+<script>
+    /* Estrellas fondo */
+    for (let i = 0; i < 120; i++) {
+        const star = document.createElement("div");
+        star.className = "estrella";
+        star.innerText = "✦";
+        star.style.left = Math.random() * 100 + "vw";
+        star.style.top = Math.random() * 100 + "vh";
+        star.style.fontSize = (5 + Math.random() * 10) + "px";
+        star.style.animationDuration = (2 + Math.random() * 3) + "s";
+        document.body.appendChild(star);
+    }
+
+    /* Rosas cayendo */
+    function crearRosa() {
+        const r = document.createElement("div");
+        r.className = "rosa";
+        r.innerText = "🌹";
+        r.style.left = Math.random() * 100 + "vw";
+        r.style.animationDuration = (5 + Math.random() * 5) + "s";
+        document.body.appendChild(r);
+        setTimeout(() => r.remove(), 10000);
+    }
+    setInterval(crearRosa, 700);
+
+    /* Fuegos artificiales */
+    function crearFuego() {
+        const f = document.createElement("div");
+        f.className = "firework";
+        f.style.left = Math.random() * 100 + "vw";
+        f.style.top = Math.random() * 60 + "vh";
+        document.body.appendChild(f);
+        setTimeout(() => f.remove(), 1500);
+    }
+    setInterval(crearFuego, 1200);
+
+    /* Emojis del cielo */
+    const emojis = ["🌙","⭐","✨","💫","🌟","⭐","🌙","✨"];
+    function crearEmoji() {
+        const elem = document.createElement("div");
+        elem.className = "emoji";
+        elem.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        elem.style.left = Math.random() * 100 + "vw";
+        elem.style.animationDuration = (5 + Math.random() * 5) + "s";
+        document.body.appendChild(elem);
+        setTimeout(() => elem.remove(), 11000);
+    }
+    setInterval(crearEmoji, 400);
+</script>
+
+</body>
+</html>
